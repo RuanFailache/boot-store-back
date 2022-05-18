@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES6",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "baseUrl": "./",
+    "paths": {
+      "@adapters/*": ["src/adapters/*"],
+      "@events/*": ["src/events/*"],
+      "@models/*": ["src/models/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@utils/*": ["src/utils/*"],
+      "@services/*": ["src/services/*"]
+    },
+    "typeRoots": ["./src/@types"]
+  }
+}
