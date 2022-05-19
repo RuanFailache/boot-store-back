@@ -1,5 +1,5 @@
 import { CreateUserInput } from "@interfaces/user";
-import connectDatabase from "./connectDatabase";
+import connectDatabase from "../connectDatabase";
 
 export default class UserModel {
   private userDB;
@@ -11,6 +11,18 @@ export default class UserModel {
   create(params: CreateUserInput) {
     return this.userDB.create({
       data: params,
+    });
+  }
+
+  findById(id: number) {
+    return this.userDB.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        cart: true,
+        UserFavoriteProducts: true,
+      },
     });
   }
 

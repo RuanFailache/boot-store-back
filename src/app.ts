@@ -14,15 +14,15 @@ app.listen(4000, () => {
   console.log("Listening at port 4000");
 });
 
-process.on("unhandledRejection", (reason, promise) => {
-  const message = {
-    type: "Unhandled Rejection",
-    reason,
-    promise,
-  };
-  console.log("unhandledRejection", message);
-});
+// process.on("unhandledRejection", (reason, promise) => {
+//   const message = {
+//     type: "Unhandled Rejection",
+//     reason,
+//     promise,
+//   };
+//   console.log("unhandledRejection", message);
+// });
 
-process.on("uncaughtException", (err) => {
-  console.log("uncaughtException", JSON.stringify(err));
-});
+// process.on("uncaughtException", (err) => {
+//   console.log("uncaughtException", JSON.stringify(err));
+// });

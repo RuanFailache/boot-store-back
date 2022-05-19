@@ -8,13 +8,14 @@ datasource db {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   name     String
-  email    String   @unique
+  email    String @unique
   password String
-  isAdmin  Boolean  @default(false)
-  cart     Cart?
-  session  Session?
+
+  cart                 Cart?
+  session              Session?
+  UserFavoriteProducts UserFavoriteProducts?
 
   @@map("users")
 }
@@ -24,14 +25,16 @@ model Session {
   token     String   @unique
   userId    Int      @unique
   createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id])
+
+  user User @relation(fields: [userId], references: [id])
 
   @@map("sessions")
 }
 
 model Cart {
-  id            Int            @id @default(autoincrement())
-  userId        Int            @unique
+  id     Int @id @default(autoincrement())
+  userId Int @unique
+
   user          User           @relation(fields: [userId], references: [id])
   ProductOnCart ProductOnCart?
 
@@ -39,10 +42,16 @@ model Cart {
 }
 
 model Product {
-  id            Int            @id @default(autoincrement())
-  name          String
-  price         Int
-  ProductOnCart ProductOnCart?
+  id       Int      @id @default(autoincrement())
+  name     String
+  price    Int
+  banner   String
+  images   String[]
+  likes    Int
+  category String
+
+  ProductOnCart        ProductOnCart?
+  UserFavoriteProducts UserFavoriteProducts?
 
   @@map("products")
 }
@@ -52,8 +61,20 @@ model ProductOnCart {
   productId   Int     @unique
   cartId      Int     @unique
   hasBeenSold Boolean @default(false)
-  cart        Cart    @relation(fields: [cartId], references: [id])
-  product     Product @relation(fields: [productId], references: [id])
+
+  cart    Cart    @relation(fields: [cartId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
 
   @@map("productsOnCart")
+}
+
+model UserFavoriteProducts {
+  id        Int @id @default(autoincrement())
+  productId Int @unique
+  userId    Int @unique
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@map("userFavoriteProducts")
 }

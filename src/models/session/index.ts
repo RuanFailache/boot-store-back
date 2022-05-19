@@ -1,4 +1,4 @@
-import connectDatabase from "./connectDatabase";
+import connectDatabase from "../connectDatabase";
 
 export default class SessionModel {
   private sessionDB;
