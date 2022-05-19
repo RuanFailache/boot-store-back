@@ -4,6 +4,10 @@ import SessionModel from "@models/session";
 const sessionModel = new SessionModel();
 
 export const openSession = async (userId: number) => {
+  const session = await sessionModel.findByUserId(userId);
+  if (session) {
+    await sessionModel.delete(userId);
+  }
   const token = idEncoder.makeToken();
   return sessionModel.create({
     userId,
@@ -11,7 +15,7 @@ export const openSession = async (userId: number) => {
   });
 };
 
-export const validateSession = async (token: string) => {
+export const getCurrentSession = async (token: string) => {
   return sessionModel.findByToken(token);
 };
 

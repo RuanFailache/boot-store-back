@@ -19,14 +19,16 @@ export const protectedRoute = async (
         );
       }
       const token = authorization.replace("Bearer ", "");
-      const session = await sessionServices.validateSession(token);
+      const session = await sessionServices.getCurrentSession(token);
       if (!session) {
         throw new ResponseError(
           401,
           "User must be logged to access this event!"
         );
       }
-      req.user.id = session.userId;
+      req.user = {
+        id: session.userId,
+      };
     }
     next();
   } catch (err) {

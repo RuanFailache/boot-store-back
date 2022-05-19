@@ -13,6 +13,14 @@ export default class SessionModel {
     });
   }
 
+  findByUserId(userId: number) {
+    return this.sessionDB.findUnique({
+      where: {
+        userId,
+      },
+    });
+  }
+
   findByToken(token: string) {
     return this.sessionDB.findUnique({
       where: {
@@ -22,7 +30,7 @@ export default class SessionModel {
   }
 
   delete(userId: number) {
-    return this.sessionDB.findUnique({
+    return this.sessionDB.delete({
       where: {
         userId,
       },

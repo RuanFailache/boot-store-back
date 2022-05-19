@@ -8,12 +8,12 @@ export const handleEvent = async (req: Request, res: Response) => {
   try {
     if (event.schema) {
       const isValidData = event.schema.validate(data);
-      if (!isValidData.error) {
+      if (isValidData.error) {
         throw new ResponseError(401, "Body in request is invalid!");
       }
     }
     if (event.protected) {
-      data.userId = req.user.id;
+      data.userId = req.user?.id;
     }
     const response = await event.handler(data);
     res.status(response.status).send(response.data || "OK");
@@ -22,6 +22,7 @@ export const handleEvent = async (req: Request, res: Response) => {
       res.status(err.status).send(err.message);
       return;
     }
-    res.send(500).send("An unknown error occurred! Please contact us.");
+    res.sendStatus(500);
+    console.log(err);
   }
 };
