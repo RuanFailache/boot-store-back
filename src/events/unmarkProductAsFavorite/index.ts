@@ -16,8 +16,10 @@ export const unmarkProductAsFavoriteHandler = async (params: {
     throw new ResponseError(400, "User and/or Product are invalid!");
   }
 
-  await userFavoriteProductsServices.removeProduct(user.id, product.id);
-
+  await Promise.all([
+    userFavoriteProductsServices.removeProduct(user.id, product.id),
+    productServices.removeLike(product.id),
+  ]);
   return {
     status: 204,
   };

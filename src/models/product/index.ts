@@ -23,4 +23,26 @@ export default class ProductModel {
       },
     });
   }
+
+  async addLike(productId: number, numberOfLikes: number) {
+    return this.productDb.update({
+      where: {
+        id: productId,
+      },
+      data: {
+        likes: numberOfLikes + 1,
+      },
+    });
+  }
+
+  async removeLike(productId: number, numberOfLikes: number) {
+    return this.productDb.update({
+      where: {
+        id: productId,
+      },
+      data: {
+        likes: numberOfLikes > 0 ? numberOfLikes - 1 : numberOfLikes,
+      },
+    });
+  }
 }

@@ -9,9 +9,12 @@ export const addProduct = async (userId: number, productId: number) => {
     productId
   );
 
+  console.log(Boolean(productOnCart));
+
   if (productOnCart) {
     throw new ResponseError(400, "Product already is marked as favorite!");
   }
+  console.log("here");
 
   return userFavoriteProductsModel.addToFavorites(userId, productId);
 };

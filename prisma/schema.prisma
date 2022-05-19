@@ -37,7 +37,7 @@ model Product {
   price    Int
   banner   String
   images   String[]
-  likes    Int
+  likes    Int      @default(0)
   category String
 
   ProductOnCart        ProductsOnCart[]
