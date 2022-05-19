@@ -23,5 +23,6 @@ export const handleEvent = async (req: Request, res: Response) => {
       return;
     }
     res.sendStatus(500);
+    console.log(err);
   }
 };

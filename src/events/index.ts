@@ -1,4 +1,6 @@
 import Joi from "joi";
+import { listProductsHandler } from "./listProducts";
+import { listProductsAsLoggedUserHandler } from "./listProductsAsLoggedUser";
 
 import { signInHandler, signInSchema } from "./signIn";
 import { signOutHandler } from "./signOut";
@@ -28,6 +30,14 @@ export const events: Record<string, Event> = {
   },
   signOut: {
     handler: signOutHandler,
+    protected: true,
+  },
+  listProducts: {
+    handler: listProductsHandler,
+    protected: false,
+  },
+  listProductsAsLoggedUser: {
+    handler: listProductsAsLoggedUserHandler,
     protected: true,
   },
 };
