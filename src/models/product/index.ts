@@ -15,4 +15,12 @@ export default class ProductModel {
       },
     });
   }
+
+  getById(id: number) {
+    return this.productDb.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
 }

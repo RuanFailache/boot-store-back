@@ -1,10 +1,14 @@
 import Joi from "joi";
+import { addProductToCartHandler } from "./addProductToCart";
 import { listProductsHandler } from "./listProducts";
 import { listProductsAsLoggedUserHandler } from "./listProductsAsLoggedUser";
+import { markProductAsFavoriteHandler } from "./markProductAsFavorite";
+import { removeProductFromCartHandler } from "./removeProductFromCart";
 
 import { signInHandler, signInSchema } from "./signIn";
 import { signOutHandler } from "./signOut";
 import { signUpHandler, signUpSchema } from "./signUp";
+import { unmarkProductAsFavoriteHandler } from "./unmarkProductAsFavorite";
 
 export interface EventResponse {
   data?: unknown;
@@ -38,6 +42,22 @@ export const events: Record<string, Event> = {
   },
   listProductsAsLoggedUser: {
     handler: listProductsAsLoggedUserHandler,
+    protected: true,
+  },
+  addProductToCart: {
+    handler: addProductToCartHandler,
+    protected: true,
+  },
+  removeProductFromCart: {
+    handler: removeProductFromCartHandler,
+    protected: true,
+  },
+  markProductAsFavorite: {
+    handler: markProductAsFavoriteHandler,
+    protected: true,
+  },
+  unmarkProductAsFavorite: {
+    handler: unmarkProductAsFavoriteHandler,
     protected: true,
   },
 };

@@ -2,6 +2,7 @@ import { EventResponse } from "..";
 import * as productServices from "@services/product";
 import * as userServices from "@services/user";
 import { formatProductListFromDB } from "@utils/formatProductListFromDB";
+import ResponseError from "@utils/ResponseError";
 
 export const listProductsAsLoggedUserHandler = async (params: {
   userId: number;
@@ -13,11 +14,15 @@ export const listProductsAsLoggedUserHandler = async (params: {
 
   const data = formatProductListFromDB(products);
 
+  if (!currUser) {
+    throw new ResponseError(401, "User must be logged!");
+  }
+
   products.forEach((product, index) => {
-    if (product.ProductOnCart?.userId === currUser?.id) {
+    if (product.ProductOnCart.find((p) => p.userId === currUser.id)) {
       data[index].isAtCart = true;
     }
-    if (product.UserFavoriteProducts?.userId === currUser?.id) {
+    if (product.UserFavoriteProducts.find((p) => p.userId === currUser.id)) {
       data[index].isFavorite = true;
     }
   });
