@@ -13,7 +13,7 @@ model User {
   email    String @unique
   password String
 
-  cart                 Cart?
+  cart                 ProductsOnCart?
   session              Session?
   UserFavoriteProducts UserFavoriteProducts?
 
@@ -31,16 +31,6 @@ model Session {
   @@map("sessions")
 }
 
-model Cart {
-  id     Int @id @default(autoincrement())
-  userId Int @unique
-
-  user          User           @relation(fields: [userId], references: [id])
-  ProductOnCart ProductOnCart?
-
-  @@map("carts")
-}
-
 model Product {
   id       Int      @id @default(autoincrement())
   name     String
@@ -50,19 +40,19 @@ model Product {
   likes    Int
   category String
 
-  ProductOnCart        ProductOnCart?
+  ProductOnCart        ProductsOnCart?
   UserFavoriteProducts UserFavoriteProducts?
 
   @@map("products")
 }
 
-model ProductOnCart {
+model ProductsOnCart {
   id          Int     @id @default(autoincrement())
   productId   Int     @unique
-  cartId      Int     @unique
+  userId      Int     @unique
   hasBeenSold Boolean @default(false)
 
-  cart    Cart    @relation(fields: [cartId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
   product Product @relation(fields: [productId], references: [id])
 
   @@map("productsOnCart")
