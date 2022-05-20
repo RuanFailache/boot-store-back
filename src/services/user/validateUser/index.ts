@@ -1,21 +1,21 @@
-import UserModel from "@models/user";
-import encoder from "@adapters/BcryptAdapter";
-import { ValidateUserInput } from "@interfaces/user";
-import ResponseError from "@utils/ResponseError";
+import encoder from '@adapters/BcryptAdapter'
+import { ValidateUserInput } from '@interfaces/user'
+import UserModel from '@models/user'
+import ResponseError from '@utils/ResponseError'
 
-const userModel = new UserModel();
+const userModel = new UserModel()
 
 export const validateUser = async (params: ValidateUserInput) => {
-  const user = await userModel.findByEmail(params.email);
+  const user = await userModel.findByEmail(params.email)
   if (!user) {
-    throw new ResponseError(404, "User email and/or password is invalid!");
+    throw new ResponseError(404, 'User email and/or password is invalid!')
   }
   const isValidPassword = encoder.compareDataWithHash(
     params.password,
-    user.password
-  );
+    user.password,
+  )
   if (!isValidPassword) {
-    throw new ResponseError(404, "User email and/or password is invalid!");
+    throw new ResponseError(404, 'User email and/or password is invalid!')
   }
-  return user;
-};
+  return user
+}

@@ -1,16 +1,16 @@
-import connectDatabase from "../connectDatabase";
+import connectDatabase from '../connectDatabase'
 
 export default class SessionModel {
-  private sessionDB;
+  private sessionDB
 
   constructor() {
-    this.sessionDB = connectDatabase.session;
+    this.sessionDB = connectDatabase.session
   }
 
   create(params: { userId: number; token: string }) {
     return this.sessionDB.create({
       data: params,
-    });
+    })
   }
 
   findByUserId(userId: number) {
@@ -18,7 +18,7 @@ export default class SessionModel {
       where: {
         userId,
       },
-    });
+    })
   }
 
   findByToken(token: string) {
@@ -26,7 +26,7 @@ export default class SessionModel {
       where: {
         token,
       },
-    });
+    })
   }
 
   delete(userId: number) {
@@ -34,6 +34,6 @@ export default class SessionModel {
       where: {
         userId,
       },
-    });
+    })
   }
 }

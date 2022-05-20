@@ -1,4 +1,4 @@
-import { Product } from "@prisma/client";
+import { Product } from '@prisma/client'
 
 export const formatProductListFromDB = (dataFromDatabase: Product[]) => {
   return dataFromDatabase.map((product) => {
@@ -12,6 +12,6 @@ export const formatProductListFromDB = (dataFromDatabase: Product[]) => {
       likes: product.likes,
       isAtCart: false,
       isFavorite: false,
-    };
-  });
-};
+    }
+  })
+}

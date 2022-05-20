@@ -1,2 +1,2 @@
-export * from "./addProductAsFavorite";
-export * from "./removeProductFromFavorites";
+export * from './addProductAsFavorite'
+export * from './removeProductFromFavorites'

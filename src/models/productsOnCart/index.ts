@@ -1,10 +1,10 @@
-import connectDatabase from "../connectDatabase";
+import connectDatabase from '../connectDatabase'
 
 export default class ProductsOnCartModel {
-  private productsOnCartDb;
+  private productsOnCartDb
 
   constructor() {
-    this.productsOnCartDb = connectDatabase.productsOnCart;
+    this.productsOnCartDb = connectDatabase.productsOnCart
   }
 
   findProductInCart(userId: number, productId: number) {
@@ -13,7 +13,7 @@ export default class ProductsOnCartModel {
         productId,
         userId,
       },
-    });
+    })
   }
 
   addToCart(userId: number, productId: number) {
@@ -22,7 +22,7 @@ export default class ProductsOnCartModel {
         productId,
         userId,
       },
-    });
+    })
   }
 
   removeFromCart(cartId: number) {
@@ -30,6 +30,6 @@ export default class ProductsOnCartModel {
       where: {
         id: cartId,
       },
-    });
+    })
   }
 }

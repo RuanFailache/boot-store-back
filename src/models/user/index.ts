@@ -1,17 +1,17 @@
-import { CreateUserInput } from "@interfaces/user";
-import connectDatabase from "../connectDatabase";
+import { CreateUserInput } from '@interfaces/user'
+import connectDatabase from '../connectDatabase'
 
 export default class UserModel {
-  private userDB;
+  private userDB
 
   constructor() {
-    this.userDB = connectDatabase.user;
+    this.userDB = connectDatabase.user
   }
 
   create(params: CreateUserInput) {
     return this.userDB.create({
       data: params,
-    });
+    })
   }
 
   findById(id: number) {
@@ -23,7 +23,7 @@ export default class UserModel {
         cart: true,
         UserFavoriteProducts: true,
       },
-    });
+    })
   }
 
   findByEmail(email: string) {
@@ -31,6 +31,6 @@ export default class UserModel {
       where: {
         email,
       },
-    });
+    })
   }
 }

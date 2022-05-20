@@ -1,10 +1,10 @@
-import connectDatabase from "../connectDatabase";
+import connectDatabase from '../connectDatabase'
 
 export default class UserFavoriteProductsModel {
-  private userFavoriteProductsDb;
+  private userFavoriteProductsDb
 
   constructor() {
-    this.userFavoriteProductsDb = connectDatabase.userFavoriteProducts;
+    this.userFavoriteProductsDb = connectDatabase.userFavoriteProducts
   }
 
   findProductInFavorites(userId: number, productId: number) {
@@ -13,7 +13,7 @@ export default class UserFavoriteProductsModel {
         productId,
         userId,
       },
-    });
+    })
   }
 
   addToFavorites(userId: number, productId: number) {
@@ -22,7 +22,7 @@ export default class UserFavoriteProductsModel {
         productId,
         userId,
       },
-    });
+    })
   }
 
   removeFromFavorites(favoriteId: number) {
@@ -30,6 +30,6 @@ export default class UserFavoriteProductsModel {
       where: {
         id: favoriteId,
       },
-    });
+    })
   }
 }

@@ -1,20 +1,20 @@
-import UserFavoriteProductsModel from "@models/userFavoriteProducts";
-import ResponseError from "@utils/ResponseError";
+import UserFavoriteProductsModel from '@models/userFavoriteProducts'
+import ResponseError from '@utils/ResponseError'
 
-const userFavoriteProductsModel = new UserFavoriteProductsModel();
+const userFavoriteProductsModel = new UserFavoriteProductsModel()
 
 export const addProduct = async (userId: number, productId: number) => {
   const productOnCart = await userFavoriteProductsModel.findProductInFavorites(
     userId,
-    productId
-  );
+    productId,
+  )
 
-  console.log(Boolean(productOnCart));
+  console.log(Boolean(productOnCart))
 
   if (productOnCart) {
-    throw new ResponseError(400, "Product already is marked as favorite!");
+    throw new ResponseError(400, 'Product already is marked as favorite!')
   }
-  console.log("here");
+  console.log('here')
 
-  return userFavoriteProductsModel.addToFavorites(userId, productId);
-};
+  return userFavoriteProductsModel.addToFavorites(userId, productId)
+}

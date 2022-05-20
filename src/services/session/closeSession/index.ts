@@ -1,7 +1,7 @@
-import SessionModel from "@models/session";
+import SessionModel from '@models/session'
 
-const sessionModel = new SessionModel();
+const sessionModel = new SessionModel()
 
 export const closeSession = async (userId: number) => {
-  await sessionModel.delete(userId);
-};
+  await sessionModel.delete(userId)
+}

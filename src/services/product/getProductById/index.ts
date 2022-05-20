@@ -1,8 +1,7 @@
-import ProductModel from "@models/product";
-import ResponseError from "@utils/ResponseError";
+import ProductModel from '@models/product'
 
-const productModel = new ProductModel();
+const productModel = new ProductModel()
 
 export const getProductById = async (productId: number) => {
-  return productModel.getById(productId);
-};
+  return productModel.getById(productId)
+}

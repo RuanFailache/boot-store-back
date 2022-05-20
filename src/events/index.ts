@@ -1,24 +1,23 @@
-import Joi from "joi";
-import { addProductToCartHandler } from "./addProductToCart";
-import { listProductsHandler } from "./listProducts";
-import { listProductsAsLoggedUserHandler } from "./listProductsAsLoggedUser";
-import { markProductAsFavoriteHandler } from "./markProductAsFavorite";
-import { removeProductFromCartHandler } from "./removeProductFromCart";
-
-import { signInHandler, signInSchema } from "./signIn";
-import { signOutHandler } from "./signOut";
-import { signUpHandler, signUpSchema } from "./signUp";
-import { unmarkProductAsFavoriteHandler } from "./unmarkProductAsFavorite";
+import Joi from 'joi'
+import { addProductToCartHandler } from './addProductToCart'
+import { listProductsHandler } from './listProducts'
+import { listProductsAsLoggedUserHandler } from './listProductsAsLoggedUser'
+import { markProductAsFavoriteHandler } from './markProductAsFavorite'
+import { removeProductFromCartHandler } from './removeProductFromCart'
+import { signInHandler, signInSchema } from './signIn'
+import { signOutHandler } from './signOut'
+import { signUpHandler, signUpSchema } from './signUp'
+import { unmarkProductAsFavoriteHandler } from './unmarkProductAsFavorite'
 
 export interface EventResponse {
-  data?: unknown;
-  status: number;
+  data?: unknown
+  status: number
 }
 
 interface Event {
-  handler: (params: any) => Promise<EventResponse>;
-  schema?: Joi.ObjectSchema<any>;
-  protected: boolean;
+  handler: (params: any) => Promise<EventResponse>
+  schema?: Joi.ObjectSchema<any>
+  protected: boolean
 }
 
 export const events: Record<string, Event> = {
@@ -60,4 +59,4 @@ export const events: Record<string, Event> = {
     handler: unmarkProductAsFavoriteHandler,
     protected: true,
   },
-};
+}

@@ -1,10 +1,10 @@
-import connectDatabase from "../connectDatabase";
+import connectDatabase from '../connectDatabase'
 
 export default class ProductModel {
-  private productDb;
+  private productDb
 
   constructor() {
-    this.productDb = connectDatabase.product;
+    this.productDb = connectDatabase.product
   }
 
   getAll() {
@@ -13,7 +13,7 @@ export default class ProductModel {
         ProductOnCart: true,
         UserFavoriteProducts: true,
       },
-    });
+    })
   }
 
   getById(id: number) {
@@ -21,7 +21,7 @@ export default class ProductModel {
       where: {
         id,
       },
-    });
+    })
   }
 
   async addLike(productId: number, numberOfLikes: number) {
@@ -32,7 +32,7 @@ export default class ProductModel {
       data: {
         likes: numberOfLikes + 1,
       },
-    });
+    })
   }
 
   async removeLike(productId: number, numberOfLikes: number) {
@@ -43,6 +43,6 @@ export default class ProductModel {
       data: {
         likes: numberOfLikes > 0 ? numberOfLikes - 1 : numberOfLikes,
       },
-    });
+    })
   }
 }
